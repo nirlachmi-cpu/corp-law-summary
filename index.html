@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מסמך מאסטר – דיני חברות</title>
+<style>
+  :root {
+    --blue: #007AFF;
+    --blue-light: #E8F2FF;
+    --blue-mid: #C8E0FF;
+    --teal: #32ADE6;
+    --teal-light: #E0F4FF;
+    --green: #34C759;
+    --green-light: #E5F9ED;
+    --orange: #FF9500;
+    --orange-light: #FFF3E0;
+    --red: #FF3B30;
+    --red-light: #FFECEB;
+    --purple: #AF52DE;
+    --purple-light: #F3E8FF;
+    --yellow: #FFD60A;
+    --yellow-light: #FFFBE0;
+    --gray1: #1C1C1E;
+    --gray2: #3A3A3C;
+    --gray3: #636366;
+    --gray4: #8E8E93;
+    --gray5: #C7C7CC;
+    --gray6: #F2F2F7;
+    --white: #FFFFFF;
+    --bg: #F5F5F7;
+    --card-bg: #FFFFFF;
+    --sidebar-bg: #1C1C1E;
+    --sidebar-text: #F2F2F7;
+    --sidebar-active: #007AFF;
+    --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    --radius: 12px;
+    --radius-sm: 8px;
+    --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--gray1);
+    display: flex;
+    min-height: 100vh;
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* ── Sidebar ── */
+  #sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: var(--sidebar-bg);
+    position: fixed;
+    top: 0; right: 0;
+    height: 100vh;
+    overflow-y: auto;
+    padding: 24px 0;
+    z-index: 100;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gray3) transparent;
+  }
+  #sidebar::-webkit-scrollbar { width: 4px; }
+  #sidebar::-webkit-scrollbar-thumb { background: var(--gray3); border-radius: 2px; }
+
+  .sidebar-title {
+    color: var(--white);
+    font-size: 15px;
+    font-weight: 700;
+    padding: 0 20px 16px;
+    border-bottom: 1px solid var(--gray2);
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .sidebar-title span {
+    display: block;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--gray4);
+    margin-top: 4px;
+  }
+
+  .sidebar-section {
+    padding: 4px 0;
+  }
+  .sidebar-section-title {
+    color: var(--gray4);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    padding: 12px 20px 4px;
+  }
+  .sidebar-link {
+    display: block;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-size: 13px;
+    padding: 7px 20px;
+    border-radius: 0;
+    transition: background 0.15s, color 0.15s;
+    line-height: 1.4;
+    opacity: 0.85;
+  }
+  .sidebar-link:hover {
+    background: rgba(255,255,255,0.08);
+    opacity: 1;
+  }
+  .sidebar-link.active {
+    background: var(--blue);
+    color: var(--white);
+    opacity: 1;
+    font-weight: 600;
+  }
+
+  /* ── Main ── */
+  #main {
+    margin-right: 280px;
+    flex: 1;
+    padding: 40px 48px;
+    max-width: 960px;
+  }
+
+  /* ── Top Hero ── */
+  .hero {
+    background: linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 60%, #1a3a5c 100%);
+    border-radius: 18px;
+    padding: 40px 44px;
+    margin-bottom: 40px;
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(0,122,255,0.25) 0%, transparent 70%);
+    top: -60px; left: -60px;
+  }
+  .hero h1 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    position: relative;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.7;
+    position: relative;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    position: relative;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.9);
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Section ── */
+  .section {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    scroll-margin-top: 24px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--gray6);
+  }
+  .section-num {
+    background: var(--blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 6px;
+    white-space: nowrap;
+    min-width: 36px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+  .section-num.green { background: var(--green); }
+  .section-num.orange { background: var(--orange); }
+  .section-num.purple { background: var(--purple); }
+  .section-num.red { background: var(--red); }
+  .section-num.teal { background: var(--teal); }
+  .section-num.gray { background: var(--gray3); }
+
+  h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gray1);
+    line-height: 1.3;
+  }
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray2);
+    margin: 20px 0 10px;
+  }
+  h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--gray2);
+    margin: 14px 0 6px;
+  }
+  p { margin-bottom: 10px; font-size: 15px; color: var(--gray2); }
+  ul, ol { padding-right: 20px; margin-bottom: 10px; }
+  li { font-size: 15px; color: var(--gray2); margin-bottom: 4px; }
+
+  /* ── Call-out boxes ── */
+  .callout {
+    border-radius: var(--radius-sm);
+    padding: 14px 16px;
+    margin: 14px 0;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    font-size: 14.5px;
+  }
+  .callout-icon { font-size: 18px; flex-shrink: 0; line-height: 1.5; }
+  .callout-body { flex: 1; }
+  .callout-body strong { display: block; margin-bottom: 4px; font-size: 14px; }
+  .callout.blue { background: var(--blue-light); border-right: 3px solid var(--blue); }
+  .callout.blue .callout-body { color: #004494; }
+  .callout.green { background: var(--green-light); border-right: 3px solid var(--green); }
+  .callout.green .callout-body { color: #1a6e35; }
+  .callout.orange { background: var(--orange-light); border-right: 3px solid var(--orange); }
+  .callout.orange .callout-body { color: #7a4500; }
+  .callout.red { background: var(--red-light); border-right: 3px solid var(--red); }
+  .callout.red .callout-body { color: #8b0000; }
+  .callout.purple { background: var(--purple-light); border-right: 3px solid var(--purple); }
+  .callout.purple .callout-body { color: #5b1e8a; }
+  .callout.yellow { background: var(--yellow-light); border-right: 3px solid var(--yellow); }
+  .callout.yellow .callout-body { color: #7a6000; }
+  .callout.teal { background: var(--teal-light); border-right: 3px solid var(--teal); }
+  .callout.teal .callout-body { color: #005580; }
+
+  /* ── Tags / Badges ── */
+  .tag {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    margin: 2px;
+    letter-spacing: 0.2px;
+  }
+  .tag.blue { background: var(--blue-light); color: #004494; }
+  .tag.green { background: var(--green-light); color: #1a6e35; }
+  .tag.orange { background: var(--orange-light); color: #7a4500; }
+  .tag.red { background: var(--red-light); color: #8b0000; }
+  .tag.purple { background: var(--purple-light); color: #5b1e8a; }
+  .tag.gray { background: var(--gray6); color: var(--gray3); }
+
+  /* ── Tables ── */
+  .tbl-wrap { overflow-x: auto; margin: 14px 0; border-radius: var(--radius-sm); }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    direction: rtl;
+  }
+  thead tr { background: var(--gray1); color: var(--white); }
+  thead th {
+    padding: 11px 14px;
+    text-align: right;
+    font-weight: 600;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+  tbody tr:nth-child(even) { background: var(--gray6); }
+  tbody tr:hover { background: var(--blue-light); }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--gray5);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  tbody td:first-child { font-weight: 600; color: var(--gray2); }
+
+  /* ── Rule boxes ── */
+  .rule-box {
+    background: linear-gradient(135deg, var(--blue-light), var(--blue-mid));
+    border: 1px solid var(--blue);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-size: 14.5px;
+    color: #003a80;
+    line-height: 1.7;
+  }
+  .rule-box strong { display: block; font-size: 13px; color: var(--blue); margin-bottom: 6px; letter-spacing: 0.3px; }
+
+  .formula-box {
+    background: var(--gray1);
+    border-radius: var(--radius-sm);
+    padding: 16px 18px;
+    margin: 14px 0;
+    font-size: 14px;
+    color: var(--white);
+    font-family: "SF Mono", "Menlo", monospace;
+    line-height: 1.8;
+    direction: rtl;
+  }
+  .formula-box span { color: #64d2ff; }
+
+  /* ── Highlight markers ── */
+  mark.blue { background: var(--blue-light); color: #004494; padding: 1px 4px; border-radius: 3px; }
+  mark.yellow { background: #FFF3A3; color: #6b5900; padding: 1px 4px; border-radius: 3px; }
+  mark.green { background: var(--green-light); color: #1a6e35; padding: 1px 4px; border-radius: 3px; }
+  mark.orange { background: var(--orange-light); color: #7a4500; padding: 1px 4px; border-radius: 3px; }
+  mark.red { background: var(--red-light); color: #8b0000; padding: 1px 4px; border-radius: 3px; }
+
+  /* ── List special ── */
+  .checklist { list-style: none; padding-right: 0; }
+  .checklist li { padding-right: 28px; position: relative; margin-bottom: 6px; }
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    right: 0;
+    color: var(--green);
+    font-weight: 700;
+  }
+  .checklist li.no::before {
+    content: '✗';
+    color: var(--red);
+  }
+  .checklist li.warn::before {
+    content: '⚠';
+    color: var(--orange);
+  }
+
+  .num-list { list-style: none; counter-reset: item; padding-right: 0; }
+  .num-list li { counter-increment: item; padding-right: 32px; position: relative; margin-bottom: 8px; font-size: 15px; color: var(--gray2); }
+  .num-list li::before {
+    content: counter(item);
+    position: absolute;
+    right: 0;
+    background: var(--blue);
+    color: white;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 2px;
+  }
+
+  /* ── Process flow ── */
+  .flow {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    margin: 14px 0;
+    direction: rtl;
+  }
+  .flow-step {
+    background: var(--blue-light);
+    border: 1.5px solid var(--blue);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #004494;
+    white-space: nowrap;
+  }
+  .flow-arrow {
+    color: var(--gray4);
+    font-size: 18px;
+    padding: 0 6px;
+    transform: scaleX(-1);
+  }
+
+  /* ── Divider ── */
+  .divider { height: 1px; background: var(--gray5); margin: 20px 0; }
+
+  /* ── Part header ── */
+  .part-header {
+    background: var(--gray1);
+    color: var(--white);
+    border-radius: var(--radius);
+    padding: 24px 32px;
+    margin: 32px 0 16px;
+  }
+  .part-header h2 { color: var(--white); font-size: 20px; }
+  .part-header p { color: var(--gray5); font-size: 13px; margin-top: 4px; }
+
+  /* ── TOC Grid ── */
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .toc-card {
+    background: var(--gray6);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    font-size: 13px;
+    color: var(--gray2);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+    display: block;
+    border: 1.5px solid transparent;
+  }
+  .toc-card:hover {
+    background: var(--blue-light);
+    border-color: var(--blue);
+    color: var(--blue);
+    transform: translateY(-1px);
+  }
+  .toc-card-num {
+    font-size: 11px;
+    color: var(--gray4);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  /* ── Importance meter ── */
+  .importance {
+    display: inline-flex;
+    gap: 3px;
+    vertical-align: middle;
+    margin-right: 8px;
+  }
+  .importance span {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gray5);
+  }
+  .importance.high span:nth-child(-n+3) { background: var(--red); }
+  .importance.med span:nth-child(-n+2) { background: var(--orange); }
+  .importance.low span:nth-child(1) { background: var(--green); }
+
+  /* ── Print ── */
+  @media print {
+    #sidebar { display: none; }
+    #main { margin-right: 0; padding: 20px; }
+    .section { break-inside: avoid; }
+  }
+
+  @media (max-width: 800px) {
+    #sidebar { display: none; }
+    #main { margin-right: 0; padding: 20px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+  SIDEBAR
+═══════════════════════════════════════════════════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-title">
+    דיני חברות
+    <span>מסמך מאסטר לבחינה</span>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">ניווט מהיר</div>
+    <a class="sidebar-link" href="#toc">תוכן עניינים</a>
+    <a class="sidebar-link" href="#formulas">פורמולות לשינון</a>
+    <a class="sidebar-link" href="#case-table">טבלת פסיקה</a>
+    <a class="sidebar-link" href="#exam-tips">טיפים לבחינה</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול א׳ – יסודות</div>
+    <a class="sidebar-link" href="#s1">אישיות משפטית נפרדת</a>
+    <a class="sidebar-link" href="#s2">הרמת מסך</a>
+    <a class="sidebar-link" href="#s3">תורת האורגנים</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ב׳ – חובות</div>
+    <a class="sidebar-link" href="#s4">חובת אמונים – ס׳ 254</a>
+    <a class="sidebar-link" href="#s5">חובת זהירות – ס׳ 252</a>
+    <a class="sidebar-link" href="#s6">כלל שיקול דעת עסקי</a>
+    <a class="sidebar-link" href="#s7">חובת הגינות – ס׳ 193</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ג׳ – דירקטוריון</div>
+    <a class="sidebar-link" href="#s8">הרכב הדירקטוריון</a>
+    <a class="sidebar-link" href="#s9">כשירות דירקטורים</a>
+    <a class="sidebar-link" href="#s10">ועדות הדירקטוריון</a>
+    <a class="sidebar-link" href="#s11">חומת האש ס׳ 112</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ד׳ – עסקאות</div>
+    <a class="sidebar-link" href="#s12">עסקאות בעלי עניין</a>
+    <a class="sidebar-link" href="#s13">פטור שיפוי ביטוח</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ה׳ – תביעות</div>
+    <a class="sidebar-link" href="#s14">תביעה נגזרת ס׳ 194</a>
+    <a class="sidebar-link" href="#s15">תובענה ייצוגית</a>
+    <a class="sidebar-link" href="#s16">קיפוח המיעוט ס׳ 191</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ו׳ – נושים</div>
+    <a class="sidebar-link" href="#s17">נושה רצוני / לא-רצוני</a>
+    <a class="sidebar-link" href="#s18">הדחיית חוב</a>
+    <a class="sidebar-link" href="#s19">אחריות פלילית</a>
+  </div>
+
+  <div class="sidebar-section">
+    <div class="sidebar-section-title">מודול ז׳ – שונות</div>
+    <a class="sidebar-link" href="#s20">מכירת שליטה</a>
+    <a class="sidebar-link" href="#s21">הוראות שונות</a>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════
+  MAIN
+═══════════════════════════════════════════════════════════ -->
+<main id="main">
+
+  <!-- Hero -->
+  <div class="hero">
+    <h1>מסמך מאסטר – דיני חברות</h1>
+    <p>חוק החברות, תשנ״ט-1999 | מהדורת הכנה לבחינה | מלא ומעודכן</p>
+    <div class="hero-badges">
+      <span class="hero-badge">43 נושאים</span>
+      <span class="hero-badge">טבלת פסיקה</span>
+      <span class="hero-badge">IRAC מוכן</span>
+      <span class="hero-badge">עודכן יוני 2026</span>
+    </div>
+  </div>
+
+  <!-- TOC -->
+  <div class="section" id="toc">
+    <div class="section-header">
+      <div class="section-num gray">TOC</div>
+      <h2>תוכן עניינים מהיר</h2>
+    </div>
+    <div class="toc-grid">
+      <a class="toc-card" href="#s1"><div class="toc-card-num">נושא 1</div>אישיות משפטית נפרדת</a>
+      <a class="toc-card" href="#s2"><div class="toc-card-num">נושא 2</div>הרמת מסך</a>
+      <a class="toc-card" href="#s3"><div class="toc-card-num">נושא 3</div>תורת האורגנים</a>
+      <a class="toc-card" href="#s4"><div class="toc-card-num">נושא 4</div>חובת אמונים ס׳ 254</a>
+      <a class="toc-card" href="#s5"><div class="toc-card-num">נושא 5</div>חובת זהירות ס׳ 252</a>
+      <a class="toc-card" href="#s6"><div class="toc-card-num">נושא 6</div>כלל שיקול דעת עסקי</a>
+      <a class="toc-card" href="#s7"><div class="toc-card-num">נושא 7</div>חובת הגינות ס׳ 193</a>
+      <a class="toc-card" href="#s8"><div class="toc-card-num">נושא 8</div>הרכב הדירקטוריון</a>
+      <a class="toc-card" href="#s9"><div class="toc-card-num">נושא 9</div>כשירות דירקטורים</a>
+      <a class="toc-card" href="#s10"><div class="toc-card-num">נושא 10</div>ועדות דירקטוריון</a>
+      <a class="toc-card" href="#s11"><div class="toc-card-num">נושא 11</div>חומת האש ס׳ 112</a>
+      <a class="toc-card" href="#s12"><div class="toc-card-num">נושא 12</div>עסקאות בעלי עניין</a>
+      <a class="toc-card" href="#s13"><div class="toc-card-num">נושא 13</div>פטור שיפוי ביטוח</a>
+      <a class="toc-card" href="#s14"><div class="toc-card-num">נושא 14</div>תביעה נגזרת ס׳ 194</a>
+      <a class="toc-card" href="#s15"><div class="toc-card-num">נושא 15</div>תובענה ייצוגית</a>
+      <a class="toc-card" href="#s16"><div class="toc-card-num">נושא 16</div>קיפוח המיעוט ס׳ 191</a>
+      <a class="toc-card" href="#s17"><div class="toc-card-num">נושא 17</div>נושה רצוני / לא-רצוני</a>
+      <a class="toc-card" href="#s18"><div class="toc-card-num">נושא 18</div>הדחיית חוב</a>
+      <a class="toc-card" href="#s19"><div class="toc-card-num">נושא 19</div>אחריות פלילית</a>
+      <a class="toc-card" href="#s20"><div class="toc-card-num">נושא 20</div>מכירת שליטה</a>
+      <a class="toc-card" href="#s21"><div class="toc-card-num">נושא 21</div>הוראות שונות</a>
+      <a class="toc-card" href="#formulas"><div class="toc-card-num">נספח</div>פורמולות לשינון</a>
+      <a class="toc-card" href="#case-table"><div class="toc-card-num">נספח</div>טבלת פסיקה</a>
+      <a class="toc-card" href="#exam-tips"><div class="toc-card-num">נספח</div>טיפים לבחינה</a>
+    </div>
+  </div>
+
+  <!-- ═══════════════ חלק א: יסודות ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק א׳ — יסודות ומבנה החברה</h2>
+    <p>אישיות נפרדת, הרמת מסך, אורגנים</p>
+  </div>
+
+  <!-- נושא 1: אישיות משפטית נפרדת -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>אישיות משפטית נפרדת והתאגדות
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="callout blue">
+      <div class="callout-icon">⚖️</div>
+      <div class="callout-body">
+        <strong>עיקרון היסוד – סעיף 4 לחוק החברות</strong>
+        חברה היא תאגיד הנפרד מבעלי מניותיו. היא בעלת זכויות וחובות עצמאיות, בלתי תלויה בזהות חבריה, ויכולה לנהוג כאדם בכל עניין הנוגע לה.
+      </div>
+    </div>
+
+    <h3>פסק הדין המכונן – Salomon v. Salomon (1897)</h3>
+    <p><strong>עובדות:</strong> אהרון סולומון מכר עסקו לחברה בשליטתו, קיבל אגרות חוב מהחברה, ובפירוק ניסו הנושים הרגילים לקדום מפניו.</p>
+    <p><strong>הלכה:</strong> בית הלורדים קיבל את עמדת סולומון – החברה היא ישות נפרדת ממנו, ואגרות החוב שלו בכורה על פני הנושים הרגילים.</p>
+    <p><strong>תרומה:</strong> עוגן עקרון האישיות הנפרדת במשפט הקורפורטיבי.</p>
+
+    <h3>השלכות מרכזיות</h3>
+    <ul class="num-list">
+      <li><strong>אחריות מוגבלת</strong> – בעל מניות מסתכן רק בשווי השקעתו</li>
+      <li><strong>קביעות</strong> – החברה ממשיכה להתקיים גם אחרי מות בעלי המניות</li>
+      <li><strong>רכוש נפרד</strong> – נכסי החברה שייכים לה, לא לבעלי המניות</li>
+      <li><strong>כשרות משפטית</strong> – יכולה לתבוע, להתבע, להתקשר בחוזים</li>
+    </ul>
+
+    <div class="callout orange">
+      <div class="callout-icon">⚠️</div>
+      <div class="callout-body">
+        <strong>מלכודת בחינה</strong>
+        האחריות המוגבלת מגינה על בעל המניות, אך <mark class="red">לא</mark> על נושא המשרה! מנהל שפועל בניגוד לחוק עלול לשאת באחריות אישית.
+      </div>
+    </div>
+  </div>
+
+  <!-- נושא 2: הרמת מסך -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num red">2</div>
+      <h2>הרמת מסך – סעיפים 6-7
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">🚨</div>
+      <div class="callout-body">
+        <strong>עיקרון – חריגה לכלל</strong>
+        הרמת מסך היא <mark class="red">חריג</mark> לעקרון האישיות הנפרדת. הנטל על הטוען להרמת מסך – גבוה.
+      </div>
+    </div>
+
+    <h3>שני מסלולי ס׳ 6</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>מסלול</th><th>תנאים</th><th>תוצאה</th></tr></thead>
+      <tbody>
+        <tr><td>ס׳ 6(א)(1) – שימוש לרעה</td><td>שימוש בחברה לצורך הונאה / קיפוח נושה / מנע התחמקות מחבות</td><td>הרמת מסך</td></tr>
+        <tr><td>ס׳ 6(א)(2) – ערבוב נכסים</td><td>ניהול רכוש תוך ערבוב נכסים אישיים עם נכסי החברה</td><td>הרמת מסך</td></tr>
+        <tr><td>ס׳ 6(ב) – מימון דק</td><td>מימון בלתי מספיק ביחס לסיכוני החברה</td><td>שיקול דעת שיפוטי</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>תנאים מצטברים לס׳ 6(א)</h3>
+    <ol class="num-list">
+      <li>החברה היא <strong>כסות/מסווה</strong> בלבד לפעילות אישית</li>
+      <li>קיים <strong>שימוש לרעה</strong> (הונאה, קיפוח, השתמטות)</li>
+      <li>יש <strong>קשר סיבתי</strong> בין השימוש לרעה לנזק לנושה</li>
+    </ol>
+
+    <h3>הרמה לחיוב vs. הרמה לזכות (ס׳ 7)</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>כיוון</th><th>משמעות</th><th>הגנות</th></tr></thead>
+      <tbody>
+        <tr><td>הרמה לחיוב</td><td>מייחסים לבעל מניות חוב/אחריות של החברה</td><td>רק בנסיבות חריגות</td></tr>
+        <tr><td>הרמה לזכות</td><td>מייחסים לבעל מניות נכסים/זכויות של החברה</td><td>נדירה עוד יותר</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>נושה לא-רצוני (נזיקין)</strong>
+        בתי המשפט נוטים יותר להרים מסך לטובת קורבנות נזיקין (נושים לא-רצוניים) שלא יכלו להגן על עצמם מראש, לעומת נושים מסחריים שיכלו לדרוש בטחונות.
+      </div>
+    </div>
+  </div>
+
+  <!-- נושא 3: תורת האורגנים -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num teal">3</div>
+      <h2>תורת האורגנים
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <p>חברה פועלת באמצעות <strong>אורגנים</strong> (גוף חי). מעשה האורגן = מעשה החברה עצמה (לא רק ייצוג).</p>
+
+    <h3>שלושה אורגנים עיקריים</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>אורגן</th><th>ס׳</th><th>תפקיד</th></tr></thead>
+      <tbody>
+        <tr><td>האסיפה הכללית</td><td>ס׳ 57</td><td>מינוי דירקטורים, רואה חשבון, שינוי תקנון, עסקאות מיוחדות</td></tr>
+        <tr><td>הדירקטוריון</td><td>ס׳ 92</td><td>מדיניות עסקית, פיקוח על ה-CEO, אישור דוחות</td></tr>
+        <tr><td>ה-CEO</td><td>ס׳ 121</td><td>ניהול שוטף, יישום החלטות הדירקטוריון</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="rule-box">
+      <strong>⚡ כלל הייחוס</strong>
+      כאשר אורגן פועל בתחום סמכותו, מעשיו מיוחסים לחברה עצמה – לא רק לו אישית. זה שונה ממייצג (שליח) שמעשיו מיוחסים לשולח.
+    </div>
+  </div>
+
+  <!-- ═══════════════ חלק ב: חובות ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ב׳ — חובות נושאי משרה</h2>
+    <p>חובת אמונים, זהירות, הגינות וכלל שיקול הדעת העסקי</p>
+  </div>
+
+  <!-- נושא 4: חובת אמונים -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>חובת האמונים – סעיף 254
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 הגדרה – ס׳ 254(א)</strong>
+      נושא משרה חב חובת אמונים לחברה. עליו לפעול בתום לב ולטובת החברה, לרבות להימנע מניגוד עניינים, מניצול הזדמנויות עסקיות של החברה ומתחרות בה.
+    </div>
+
+    <h3>שלושה יסודות חובת האמונים</h3>
+    <ol class="num-list">
+      <li><strong>הימנעות מניגוד עניינים</strong> – לא לפעול כאשר יש לו אינטרס אישי מנוגד לאינטרס החברה</li>
+      <li><strong>הימנעות מניצול הזדמנות עסקית</strong> – לא לנצל לצרכיו הפרטיים הזדמנות שהגיעה אליו מכוח תפקידו</li>
+      <li><strong>הימנעות מתחרות</strong> – לא לפעול בעסק מתחרה ללא אישור החברה</li>
+    </ol>
+
+    <h3>מנגנון הריפוי – ס׳ 255</h3>
+    <div class="flow">
+      <div class="flow-step">גילוי מלא</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">אישור כדין</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">תנאי הוגנות</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">חובה "מרופאת"</div>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">🚨</div>
+      <div class="callout-body">
+        <strong>ס׳ 258 – קוגנטי לחלוטין</strong>
+        לא ניתן לפטור מראש מחובת אמונים בתקנון או בהסכם. כל סעיף כזה – בטל.
+      </div>
+    </div>
+
+    <h3>סיווג ניגוד עניינים לפי חומרה</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>סוג</th><th>מבחן ביקורת</th><th>נטל הוכחה</th></tr></thead>
+      <tbody>
+        <tr><td>עסקה רגילה בניגוד עניינים</td><td>הגינות מלאה</td><td>על נושא המשרה</td></tr>
+        <tr><td>עסקה עם בעל שליטה</td><td>הגינות מלאה + תהליך</td><td>על נושא המשרה</td></tr>
+        <tr><td>ניצול הזדמנות עסקית</td><td>הגינות מלאה</td><td>על נושא המשרה</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 5: חובת זהירות -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num green">5</div>
+      <h2>חובת הזהירות – סעיף 252
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 הגדרה – ס׳ 252(א)</strong>
+      נושא משרה חב חובת זהירות לחברה. עליו לנהוג ברמת המיומנות, הזהירות והשקידה שנושא משרה סביר בעל כישורים ונסיון דומים היה נוהג בנסיבות דומות.
+    </div>
+
+    <h3>פסק דין מעריב – הגדרת מהות החובה</h3>
+    <p><strong>עובדות:</strong> דירקטורים בקבוצת מעריב אישרו מדיניות שהובילה לנזק לחברה.</p>
+    <p><strong>הלכה:</strong> בית המשפט קבע שדירקטור חייב להיות <em>פעיל</em>, לא פסיבי. חובת הזהירות כוללת:</p>
+    <ul class="checklist">
+      <li>השתתפות פעילה בישיבות</li>
+      <li>עיון בחומרים הרלוונטיים</li>
+      <li>שאלות קריטיות</li>
+      <li>מעקב אחרי ביצוע החלטות</li>
+    </ul>
+
+    <h3>השוואה: חובת אמונים vs. חובת זהירות</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>פרמטר</th><th>חובת אמונים (ס׳ 254)</th><th>חובת זהירות (ס׳ 252)</th></tr></thead>
+      <tbody>
+        <tr><td>מהות</td><td>נאמנות ושירות לחברה</td><td>כישורים וזהירות סבירה</td></tr>
+        <tr><td>נטל הוכחה</td><td>על נושא המשרה (הפוך)</td><td>על התובע (רגיל)</td></tr>
+        <tr><td>ניתן לפטור?</td><td>לא – ס׳ 258 קוגנטי</td><td>כן – ניתן לפטור בתקנון</td></tr>
+        <tr><td>מבחן ביקורת</td><td>הגינות מלאה</td><td>מנהל סביר</td></tr>
+        <tr><td>ריפוי</td><td>גילוי + אישור + הוגנות</td><td>אין "ריפוי" – רק הגנת BJR</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 6: BJR -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num purple">6</div>
+      <h2>כלל שיקול הדעת העסקי (BJR)
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 עיקרון</strong>
+      בית המשפט לא יחליף את שיקול דעתו העסקי של הדירקטוריון בשיקול דעתו שלו, כל עוד ההחלטה התקבלה בתהליך תקין.
+    </div>
+
+    <h3>שלושת תנאי ה-BJR (ורדניקוב)</h3>
+    <div class="callout blue">
+      <div class="callout-icon">✅</div>
+      <div class="callout-body">
+        <strong>מבחן שלושת התנאים המצטברים</strong>
+        <ol style="margin-top:8px; padding-right:18px;">
+          <li><mark class="blue">החלטה מיודעת</mark> – ה-Board עיין בחומרים, שמע מומחים, שאל שאלות</li>
+          <li><mark class="blue">ניקיון כפיים</mark> – אין לנושא המשרה אינטרס אישי בהחלטה</li>
+          <li><mark class="blue">תום לב</mark> – פעל לטובת החברה, לא לטובתו</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>פסקי דין – ורדניקוב, בטר פלייס</h3>
+    <p><strong>ורדניקוב:</strong> מבחן BJR הותנה בשלושת התנאים. כשל ב"ניקיון כפיים" → החלטה נבחנת לפי "הגינות מלאה".</p>
+    <p><strong>בטר פלייס:</strong> דירקטוריון החליט להמשיך להשקיע כשפשיטת רגל הייתה ברורה. בית המשפט בחן: האם ההחלטה הייתה מיודעת? האם הייתה הגיונית גם בדיעבד?</p>
+
+    <h3>ספקטרום הביקורת השיפוטית</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>מצב</th><th>מבחן</th><th>כיוון הנטל</th></tr></thead>
+      <tbody>
+        <tr><td>החלטה עסקית תקינה</td><td>BJR – ביקורת מינימלית</td><td>על התובע</td></tr>
+        <tr><td>עסקת בעל שליטה (חשד)</td><td>Enhanced Scrutiny</td><td>מעורב</td></tr>
+        <tr><td>ניגוד עניינים מלא</td><td>Entire Fairness – הגינות מלאה</td><td>על הנתבע</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 7: חובת הגינות -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num orange">7</div>
+      <h2>חובת ההגינות – סעיף 193
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 ס׳ 193 – בעלי מניות</strong>
+      בעל מניות חייב לנהוג בהגינות כלפי החברה ובעלי המניות האחרים. חל בעיקר על בעל שליטה.
+    </div>
+
+    <h3>הלכת קוסוי – מכירת שליטה</h3>
+    <p><strong>עובדות:</strong> קוסוי מכר את שליטתו בבנק תל אביב לגורם שלא היה מסוגל לנהל בנק.</p>
+    <p><strong>הלכה:</strong> לבעל שליטה קמה חובת בירור בסיסי (<em>Due Diligence</em>) לפני מכירת שליטה – לוודא שהקונה לגיטימי ולא יפגע בחברה.</p>
+
+    <h3>שלוש גישות לפרמיית שליטה</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>גישה</th><th>עמדה</th><th>נימוק</th></tr></thead>
+      <tbody>
+        <tr><td>גישה ליברלית</td><td>פרמיית שליטה מותרת לחלוטין</td><td>שליטה היא רכוש בעל הרוב</td></tr>
+        <tr><td>גישה שוויונית</td><td>יש לחלק פרמיית שליטה עם כלל בעלי המניות</td><td>שייכת לחברה, לא לבעל השליטה</td></tr>
+        <tr><td>גישה הישראלית (קוסוי)</td><td>פרמיה מותרת, אך חובת בירור בסיסי</td><td>איזון בין חופש שוק לאחריות</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>הלכת פויכטונגר – "דגלים אדומים"</h3>
+    <p>אם במהלך בדיקת הקונה עולים <mark class="orange">דגלים אדומים</mark> (רמאות, חדלות פירעון, כוונות פגיעה) – חובת הבירור מתגברת. חזרה אחורה מחויבת. מכירה ב"עצימת עיניים" = הפרת חובת הגינות.</p>
+  </div>
+
+  <!-- ═══════════════ חלק ג: דירקטוריון ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ג׳ — הדירקטוריון וממשל תאגידי</h2>
+    <p>הרכב, כשירות, ועדות, חומת אש</p>
+  </div>
+
+  <!-- נושא 8: הרכב הדירקטוריון -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>הרכב הדירקטוריון – שלושה סוגי דירקטורים
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <h3>א. דירקטור רגיל</h3>
+    <p>נבחר ע"י האסיפה הכללית (ס׳ 59). אין דרישות עצמאות ייחודיות. כפוף לרוב רגיל.</p>
+
+    <h3>ב. דירקטור חיצוני – דח"צ (סעיפים 239–249)</h3>
+    <div class="callout blue">
+      <div class="callout-icon">🏛️</div>
+      <div class="callout-body">
+        <strong>מנגנון המינוי – ס׳ 239 (הצבעה מיוחדת)</strong>
+        המינוי דורש רוב <em>כפול</em>:
+        <ul style="margin-top:6px;">
+          <li>רוב מקרב בעלי המניות שאינם בעלי שליטה ואינם בעלי עניין</li>
+          <li>ובלבד שלא יותר מ-<mark class="orange">2%</mark> מכלל זכויות ההצבעה מתנגדים</li>
+        </ul>
+        אי-עמידה = מינוי בטל.
+      </div>
+    </div>
+
+    <h4>כהונה ותקופת צינון</h4>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>פרמטר</th><th>פרטים</th></tr></thead>
+      <tbody>
+        <tr><td>תקופת כהונה</td><td>3 שנים לכל פעם</td></tr>
+        <tr><td>חידוש מקסימלי</td><td>עד 2 פעמים (= 9 שנים סה"כ)</td></tr>
+        <tr><td>לאחר 9 שנים</td><td>תקופת צינון – ס׳ 249 – לא ניתן לכהן שוב כדח"צ באותה חברה</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h4>5 קטגוריות פסלות עצמאות (ס׳ 240–242)</h4>
+    <ol class="num-list">
+      <li><strong>קשרי משפחה</strong> – קרוב של בעל שליטה / דירקטור / CEO</li>
+      <li><strong>קשרים עסקיים</strong> – יחסי ספק/לקוח מהותי עם החברה</li>
+      <li><strong>תלות</strong> – מועסק ע"י החברה או מקבל ממנה טובות הנאה</li>
+      <li><strong>ניגוד עניינים</strong> – בעל עניין אישי בהחלטות מהותיות</li>
+      <li><strong>כפילות דירקטוריון</strong> – מכהן כדירקטור בחברה קשורה</li>
+    </ol>
+
+    <h3>ג. דירקטור בלתי תלוי – דב"ת</h3>
+    <p>מוגדר כדירקטור שאינו בעל שליטה ואינו קרובו, ואינו עובד החברה. הגדרה רחבה יותר מדח"צ.</p>
+
+    <h3>טבלת הרכב חובה</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>סוג חברה</th><th>דח"צ</th><th>דב"ת</th></tr></thead>
+      <tbody>
+        <tr><td>חברה ציבורית <strong>נשלטת</strong></td><td>לפחות 2</td><td>לפחות ⅓ מהדירקטוריון</td></tr>
+        <tr><td>חברה ציבורית <strong>לא נשלטת</strong></td><td>לפחות 2</td><td>רוב (מעל 50%)</td></tr>
+        <tr><td>חברה פרטית</td><td>אין חובה (בד"כ)</td><td>אין חובה (בד"כ)</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 9: כשירות דירקטורים -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num green">9</div>
+      <h2>כשירות דירקטורים – סעיפים 224–227
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <h3>עמוד הכשירות הכפול – ס׳ 224א</h3>
+    <div class="callout blue">
+      <div class="callout-icon">📋</div>
+      <div class="callout-body">
+        <strong>שני תנאים מצטברים</strong>
+        <p style="margin-top:8px;"><mark class="blue">תנאי 1: זמן</mark> — הדירקטור מצהיר שיש לו זמן מספיק לקיים את תפקידיו</p>
+        <p style="margin-top:4px;"><mark class="blue">תנאי 2: כישורים</mark> — לדירקטור כישורים מקצועיים הנדרשים לתפקיד. בחברה ציבורית: לפחות מחצית הדירקטורים יהיו בעלי מומחיות חשבונאית/פיננסית ממשית</p>
+      </div>
+    </div>
+
+    <h3>הצהרת דירקטור – ס׳ 224ב</h3>
+    <p>לפני מינוי, כל דירקטור חייב להצהיר על שלושה:</p>
+    <ul class="checklist">
+      <li>הוא מחזיק בכישורים הנדרשים</li>
+      <li>אין לו מניעה חוקית לכהן (ס׳ 226-227)</li>
+      <li>אין ניגוד עניינים שימנע ממנו למלא תפקידו</li>
+    </ul>
+
+    <h3>שלושת מסלולי הפסלות</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>מסלול</th><th>סעיף</th><th>תנאי</th><th>תוצאה</th></tr></thead>
+      <tbody>
+        <tr><td><strong>צווארון לבן – פלילי</strong></td><td>ס׳ 226</td><td>הרשעה בעבירות מרמה, שוחד, גניבה, הלבנת הון</td><td>פסילה אוטומטית 5 שנים</td></tr>
+        <tr><td><strong>אכיפה מנהלית</strong></td><td>ס׳ 226א</td><td>הפרת חוק ניירות ערך – צו רשנ"ע</td><td>הפסקת כהונה – הליך מנהלי</td></tr>
+        <tr><td><strong>מניעת סטטוס</strong></td><td>ס׳ 227</td><td>קטין / פסול דין / פשוט רגל</td><td>אינו רשאי לכהן</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout purple">
+      <div class="callout-icon">⚖️</div>
+      <div class="callout-body">
+        <strong>פרשת פלד-גבעוני</strong>
+        בית המשפט קבע שמינוי דח"צ על בסיס קשרים בלבד – ללא כישורים אמיתיים – עלול להוות עבירה פלילית. נבחנו שלושה פרופילים: מומחים אמיתיים (מותר), "מוכרים" ללא כישורים (פסול), ופוליטיים (פסול).
+      </div>
+    </div>
+  </div>
+
+  <!-- נושא 10: ועדות הדירקטוריון -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-num teal">10</div>
+      <h2>ועדות הדירקטוריון
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <h3>טקסונומיה: מואצלות vs. מייעצות</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>סוג</th><th>סעיף</th><th>סמכות</th><th>חברות</th></tr></thead>
+      <tbody>
+        <tr><td>ועדה מואצלת</td><td>ס׳ 110ב, 111, 243</td><td>מחליטה במקום הדירקטוריון</td><td>דירקטורים בלבד</td></tr>
+        <tr><td>ועדה מייעצת</td><td>ס׳ 110ג</td><td>ממליצה בלבד, אינה מחליטה</td><td>ניתן לכלול שאינם דירקטורים</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>ועדת הביקורת – סעיפים 114–117</h3>
+    <div class="callout blue">
+      <div class="callout-icon">🔍</div>
+      <div class="callout-body">
+        <strong>הרכב חובה (ס׳ 115)</strong>
+        <ul style="margin-top:6px;">
+          <li>לפחות 3 דירקטורים</li>
+          <li>כל הדח"צים חייבים להיות חברים</li>
+          <li>יו"ר הוועדה = דח"צ בלבד</li>
+        </ul>
+      </div>
+    </div>
+
+    <h4>מי מנוע מלהיות חבר (ס׳ 115ב)</h4>
+    <ul class="checklist">
+      <li class="no">יו"ר הדירקטוריון</li>
+      <li class="no">בעל שליטה או קרובו</li>
+      <li class="no">נושאי משרה (CEO, CFO וכד׳)</li>
+      <li class="no">מי שעיקר תפקידו מטעם בעל שליטה</li>
+    </ul>
+
+    <h4>מניין (ס׳ 116)</h4>
+    <div class="rule-box">
+      <strong>🔢 כלל מניין מיוחד</strong>
+      ישיבת ועדת הביקורת כשרה רק כאשר רוב הנוכחים הם דח"צים.
+    </div>
+
+    <h3>ועדת התגמול – סעיפים 118א–118ב</h3>
+    <div class="callout green">
+      <div class="callout-icon">💰</div>
+      <div class="callout-body">
+        <strong>הרכב (ס׳ 118א)</strong>
+        כזה כמו ועדת הביקורת: לפחות 3 דירקטורים, כל הדח"צים כחברים, יו"ר = דח"צ, ורוב החברים = דח"צ.
+      </div>
+    </div>
+
+    <h4>מנדט ועדת התגמול</h4>
+    <ol class="num-list">
+      <li>המלצה על <strong>מדיניות התגמול</strong> לאסיפה הכללית</li>
+      <li>בחינת יישום מדיניות התגמול</li>
+      <li>אישור מראש של שכר ה-CEO ונושאי המשרה הבכירים</li>
+      <li>קביעת בונוסים ותגמולים מיוחדים</li>
+    </ol>
+  </div>
+
+  <!-- נושא 11: חומת האש -->
+  <div class="section" id="s11">
+    <div class="section-header">
+      <div class="section-num red">11</div>
+      <h2>חומת האש – סעיף 112 (7 עניינים בלתי-ניתנים להאצלה)
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">🚫</div>
+      <div class="callout-body">
+        <strong>הדירקטוריון אינו רשאי להאציל החלטה על 7 עניינים אלה:</strong>
+      </div>
+    </div>
+
+    <ol class="num-list">
+      <li><strong>קביעת מדיניות כללית</strong> של החברה</li>
+      <li><strong>חלוקת דיבידנד</strong> ורכישה עצמית של מניות</li>
+      <li><strong>הסמכת ה-CEO</strong> לפעולות מסוימות</li>
+      <li><strong>מינוי ופיטורי נושאי משרה</strong> הכפופים ישירות לדירקטוריון</li>
+      <li><strong>אישור דוחות כספיים</strong></li>
+      <li><strong>אישור עסקאות בעלי עניין</strong> (שמחייבות אישור דירקטוריון)</li>
+      <li><strong>הגשת הודעה לאסיפה הכללית</strong> בנושאים המחייבים אישורה</li>
+    </ol>
+
+    <div class="callout orange">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>מדיניות</strong>
+        עניינים אלה הם "ליבת" אחריות הדירקטוריון כגוף נבחר. הסמכות כאן לא ניתנת להאצלה כדי לשמר את האחריות הדמוקרטית.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ חלק ד: עסקאות ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ד׳ — עסקאות בעלי עניין ומנגנוני הגנה</h2>
+    <p>אישורים, פטור, שיפוי, ביטוח</p>
+  </div>
+
+  <!-- נושא 12: עסקאות בעלי עניין -->
+  <div class="section" id="s12">
+    <div class="section-header">
+      <div class="section-num">12</div>
+      <h2>עסקאות בעלי עניין – מנגנון האישורים המלא
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <h3>שלבי מסלול האישור</h3>
+    <div class="flow">
+      <div class="flow-step">1. סיווג עסקה</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">2. תהליך תחרותי</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">3. ועדת ביקורת</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">4. דירקטוריון</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">5. אסיפה כללית (אם נדרש)</div>
+    </div>
+
+    <h3>מפתח הסיווג – ס׳ 270</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>סוג עסקה</th><th>מאפיין</th><th>אישורים נדרשים</th></tr></thead>
+      <tbody>
+        <tr><td>עסקה רגילה עם נושא משרה</td><td>בתנאי שוק, מהלך עסקים רגיל</td><td>ועדת ביקורת</td></tr>
+        <tr><td>עסקה חריגה עם נושא משרה</td><td>לא בתנאי שוק / השפעה מהותית</td><td>ועדת ביקורת + דירקטוריון</td></tr>
+        <tr><td>עסקה עם בעל שליטה</td><td>כל עסקה עם בעל שליטה / קרובו</td><td>ועדת ביקורת + דירקטוריון + <strong>אסיפה כללית</strong></td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>ס׳ 275 – הצבעה מיוחדת באסיפה הכללית</h3>
+    <div class="callout blue">
+      <div class="callout-icon">🗳️</div>
+      <div class="callout-body">
+        <strong>שני מסלולים מקבילים:</strong>
+        <ul style="margin-top:8px;">
+          <li><mark class="blue">מסלול א׳:</mark> רוב רגיל מכלל המצביעים</li>
+          <li><mark class="blue">מסלול ב׳:</mark> רוב מקרב בעלי המניות <em>שאינם בעלי עניין</em>, ובלבד שלא יותר מ-<mark class="orange">2%</mark> מזכויות ההצבעה מתנגדים</li>
+        </ul>
+        <p style="margin-top:8px; font-size:13px;">שני המסלולים חייבים לעבור. אחד מהם נכשל = האישור לא עובר.</p>
+      </div>
+    </div>
+
+    <h3>שאר הסעיפים הקריטיים</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>סעיף</th><th>כותרת</th><th>תוכן</th></tr></thead>
+      <tbody>
+        <tr><td>ס׳ 278</td><td>מניעת הצבעה</td><td>בעל העניין ומי שפועל מטעמו מנועים מהצבעה</td></tr>
+        <tr><td>ס׳ 280</td><td>ביטול עסקה</td><td>עסקה ללא אישור = ניתנת לביטול על-ידי החברה</td></tr>
+        <tr><td>ס׳ 283</td><td>פיצויים</td><td>נושא משרה שביצע עסקה פסולה חייב בפיצויים</td></tr>
+        <tr><td>ס׳ 269א</td><td>תהליך תחרותי</td><td>בחינת חלופות בשוק לפני אישור עסקה עם בעל שליטה</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 13: פטור שיפוי ביטוח -->
+  <div class="section" id="s13">
+    <div class="section-header">
+      <div class="section-num green">13</div>
+      <h2>פטור, שיפוי וביטוח – סעיפים 259–263
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>מנגנון</th><th>סעיף</th><th>מהות</th><th>הגבלות</th></tr></thead>
+      <tbody>
+        <tr><td><strong>פטור</strong></td><td>ס׳ 259</td><td>ויתור מראש על תביעה בגין הפרת חובת זהירות</td><td>לא מכסה חובת אמונים (ס׳ 258)</td></tr>
+        <tr><td><strong>שיפוי</strong></td><td>ס׳ 260</td><td>החברה משלמת לנושא המשרה הוצאות משפטיות בדיעבד</td><td>רק לפעולות בתפקיד, לא לקנסות/עיצומים</td></tr>
+        <tr><td><strong>ביטוח</strong></td><td>ס׳ 261</td><td>ביטוח D&O לכיסוי חבות נושאי משרה</td><td>ניתן לכסות גם חובת אמונים (בניגוד לפטור)</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>"הקווים האדומים" – ס׳ 263</h3>
+    <div class="callout red">
+      <div class="callout-icon">🚨</div>
+      <div class="callout-body">
+        <strong>אין כיסוי בשלושה מצבים:</strong>
+        <ol style="margin-top:8px; padding-right:18px;">
+          <li>הפרת חובת אמונים <strong>בכוונה לפגוע</strong></li>
+          <li>הפרת חובת זהירות <strong>בפזיזות</strong> (ולא ברשלנות רגילה)</li>
+          <li>פעולה שנועדה <strong>להפיק טובת הנאה אישית</strong> שלא כדין</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ חלק ה: תביעות ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ה׳ — מנגנוני תביעה ואכיפה</h2>
+    <p>תביעה נגזרת, תובענה ייצוגית, קיפוח מיעוט</p>
+  </div>
+
+  <!-- נושא 14: תביעה נגזרת -->
+  <div class="section" id="s14">
+    <div class="section-header">
+      <div class="section-num red">14</div>
+      <h2>תביעה נגזרת – סעיף 194
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="callout red">
+      <div class="callout-icon">⚡</div>
+      <div class="callout-body">
+        <strong>נושא חוזר בשני המועדים שנותחו – ידע זאת על בוריו!</strong>
+      </div>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 הגדרה</strong>
+      תביעה שמגיש בעל מניה <mark class="blue">בשם החברה</mark> ולטובתה, כאשר לחברה עילת תביעה ורק היא נמנעת מלהגיש את התביעה בעצמה.
+    </div>
+
+    <h3>שלבי הגשת התביעה הנגזרת</h3>
+    <ol class="num-list">
+      <li><strong>פנייה מוקדמת לדירקטוריון</strong> – דרישה שהחברה תגיש תביעה</li>
+      <li><strong>המתנה 45 יום</strong> – אם החברה לא פועלת</li>
+      <li><strong>בקשת אישור לבית משפט</strong> – ביהמ"ש בוחן את התנאים</li>
+      <li><strong>ניהול התביעה</strong> בשם החברה</li>
+    </ol>
+
+    <h3>תנאי ס׳ 198 לאישור בית המשפט</h3>
+    <ul class="checklist">
+      <li>לחברה לכאורה עילת תביעה טובה</li>
+      <li>התביעה מוגשת בתום לב</li>
+      <li>ניהול התביעה לטובת החברה (לא לטובת בעל המניה)</li>
+    </ul>
+
+    <h3>השוואה: תביעה אישית vs. תביעה נגזרת</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>פרמטר</th><th>תביעה אישית</th><th>תביעה נגזרת</th></tr></thead>
+      <tbody>
+        <tr><td>בשם מי</td><td>בעל המניה</td><td>החברה</td></tr>
+        <tr><td>נזק</td><td>לבעל המניה</td><td>לחברה</td></tr>
+        <tr><td>אישור ביהמ"ש</td><td>לא נדרש</td><td>נדרש</td></tr>
+        <tr><td>הכנסות</td><td>לבעל המניה</td><td>לחברה</td></tr>
+        <tr><td>דוגמה</td><td>קיפוח מיעוט (ס׳ 191)</td><td>הפרת חובת אמונים</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- נושא 15: תובענה ייצוגית -->
+  <div class="section" id="s15">
+    <div class="section-header">
+      <div class="section-num orange">15</div>
+      <h2>תובענה ייצוגית – חוק ניירות ערך
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-icon">📌</div>
+      <div class="callout-body">
+        <strong>מקור חוקי: ס׳ 52יא–52יג לחוק ניירות ערך, תשכ"ח-1968 (לא חוק החברות)</strong>
+      </div>
+    </div>
+
+    <p>תביעה המוגשת ע"י תובע מייצג בשם קבוצה של תובעים, שלכולם עילת תביעה דומה כנגד אותו נתבע.</p>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>פרמטר</th><th>תובענה ייצוגית</th><th>תביעה נגזרת</th></tr></thead>
+      <tbody>
+        <tr><td>בשם מי</td><td>קבוצת בעלי מניות</td><td>החברה</td></tr>
+        <tr><td>נזק</td><td>לבעלי המניות</td><td>לחברה</td></tr>
+        <tr><td>פיצוי</td><td>מחולק לחברי הקבוצה</td><td>עובר לחברה</td></tr>
+        <tr><td>חוק</td><td>חוק ני"ע / חוק תובענות ייצוגיות</td><td>חוק החברות</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>יישומים נפוצים</h3>
+    <ul>
+      <li>גילוי כוזב בתשקיף</li>
+      <li>הטעיה בדיווחים לבורסה</li>
+      <li>עסקאות פסולות עם בעלי שליטה שפגעו בציבור בעלי המניות</li>
+    </ul>
+  </div>
+
+  <!-- נושא 16: קיפוח מיעוט -->
+  <div class="section" id="s16">
+    <div class="section-header">
+      <div class="section-num purple">16</div>
+      <h2>קיפוח המיעוט – סעיף 191
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 עיקרון</strong>
+      כאשר ניהול עסקי החברה מתנהל בדרך שיש בה קיפוח של בעלי מניות כקבוצה, רשאי בית המשפט לתת כל סעד הנראה לו צודק בנסיבות העניין.
+    </div>
+
+    <h3>מבחן הקיפוח</h3>
+    <ol class="num-list">
+      <li><strong>דפוס</strong> – קיפוח דורש דפוס מתמשך, לא אירוע חד-פעמי בלבד</li>
+      <li><strong>ציפיות לגיטימיות</strong> – הפרת ציפיות שגיבשו בעלי המניות (חוזה לא פורמלי)</li>
+      <li><strong>מבחן אובייקטיבי</strong> – האם מנהל סביר היה רואה בכך קיפוח?</li>
+    </ol>
+
+    <h3>הדוגמה הקלאסית – שכר כ"מכשיר קיפוח"</h3>
+    <p>בחברה משפחתית: בעל שליטה משלם לעצמו שכר גבוה מן הרווחים ואינו מחלק דיבידנד. המיעוט אינו מקבל תמורה על השקעתו. = קיפוח.</p>
+
+    <h3>סעדים (ס׳ 191)</h3>
+    <ul class="checklist">
+      <li>פדיית מניות (רכישה כפויה)</li>
+      <li>מינוי נאמן לניהול החברה</li>
+      <li>פירוק החברה</li>
+      <li>צוו עשה / לא תעשה</li>
+    </ul>
+  </div>
+
+  <!-- ═══════════════ חלק ו: נושים ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ו׳ — הגנת נושים ואחריות פלילית</h2>
+    <p>נושים, הדחיית חוב, אחריות אורגנים</p>
+  </div>
+
+  <!-- נושא 17: נושה רצוני / לא-רצוני -->
+  <div class="section" id="s17">
+    <div class="section-header">
+      <div class="section-num orange">17</div>
+      <h2>נושה רצוני ונושה לא-רצוני
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>פרמטר</th><th>נושה רצוני</th><th>נושה לא-רצוני</th></tr></thead>
+      <tbody>
+        <tr><td>מאפיין</td><td>בחר להתקשר עם החברה ביודעין</td><td>הפך לנושה שלא בבחירתו</td></tr>
+        <tr><td>דוגמאות</td><td>בנק, ספק, שוכר</td><td>נפגע תאונה, קורבן נזיקין</td></tr>
+        <tr><td>יכולת הגנה עצמית</td><td>כן – יכול לדרוש בטחונות, לנהל משא ומתן</td><td>לא – אין לו יכולת הגנה</td></tr>
+        <tr><td>נוטה בתי המשפט?</td><td>פחות להרים מסך</td><td>יותר להרים מסך בנסיבות של מימון דק</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <div class="callout yellow">
+      <div class="callout-icon">💡</div>
+      <div class="callout-body">
+        <strong>מדיניות</strong>
+        הרמת מסך לטובת נושה לא-רצוני: בעלי מניות לא יוכלו ליהנות מאחריות מוגבלת תוך העברת סיכוני נזיקין על קורבנות בלתי-מוגנים.
+      </div>
+    </div>
+  </div>
+
+  <!-- נושא 18: הדחיית חוב -->
+  <div class="section" id="s18">
+    <div class="section-header">
+      <div class="section-num teal">18</div>
+      <h2>הדחיית חוב (כפיפות חוב)
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 הגדרה</strong>
+      הסכמה שחוב מסוים ישולם <mark class="orange">אחרי</mark> חובות אחרים. הנושה הנדחה כפוף לנושים הבכירים.
+    </div>
+
+    <h3>שלושה הקשרים</h3>
+    <ol class="num-list">
+      <li><strong>הדחייה הסכמית</strong> – בעל שליטה מלווה לחברה ומסכים שחובו ידחה לבנקים. נדרש לעיתים כתנאי לאשראי.</li>
+      <li><strong>הדחייה שיפוטית (מימון דק)</strong> – כאשר דירקטור / בעל שליטה מלווה לחברה שמימונה דק, ביהמ"ש עשוי לראות את ההלוואה כהון עצמי מסווה ולהדחות אותה.</li>
+      <li><strong>הדחייה בקבוצות חברות</strong> – הלוואות בין-חברתיות: אם חברת האם שלטה בחברת הבת תוך ניצול שיטתי, חובה יכול להידחות בפירוק.</li>
+    </ol>
+
+    <h3>תנאי הדחייה שיפוטית (הלכה אמריקאית, מוכרת בישראל)</h3>
+    <ul class="checklist">
+      <li>בעל שליטה ניהל את החברה בניגוד לאינטרס הנושים</li>
+      <li>הניהול גרם נזק ממשי לנושים</li>
+      <li>ההדחייה צודקת בנסיבות</li>
+    </ul>
+  </div>
+
+  <!-- נושא 19: אחריות פלילית -->
+  <div class="section" id="s19">
+    <div class="section-header">
+      <div class="section-num red">19</div>
+      <h2>אחריות פלילית של אורגנים – מבחן הנהנה העיקרי
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="rule-box">
+      <strong>📖 שאלת המבחן</strong>
+      כאשר עובד/סוכן ביצע עבירה, מי הנהנה העיקרי מביצוע המעשה העבריין?
+    </div>
+
+    <h3>שלושת תנאי האחריות</h3>
+    <ol class="num-list">
+      <li><strong>ידע</strong> – האורגן ידע על העבירה (ולו בעצימת עיניים)</li>
+      <li><strong>הנאה</strong> – האורגן נהנה ממנה (ישירות או עקיפות)</li>
+      <li><strong>אי-מניעה</strong> – האורגן לא מנע אותה למרות שיכול היה</li>
+    </ol>
+
+    <p>אם כל שלושת התנאים מתקיימים – ניתן להרשיע את האורגן גם אם לא ביצע את העבירה בעצמו.</p>
+
+    <div class="callout orange">
+      <div class="callout-icon">📌</div>
+      <div class="callout-body">
+        <strong>דוגמה</strong>
+        עובד חברה מבצע עבירת מס. ה-CEO ידע, נהנה מהרווחים שהתפנו, ולא מנע. ה-CEO עלול להיות מורשע בעבירת המס – גם ללא ביצוע פיזי.
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════ חלק ז: מכירת שליטה ושונות ═══════════════ -->
+  <div class="part-header">
+    <h2>חלק ז׳ — מכירת שליטה והוראות שונות</h2>
+    <p>מכירת שליטה, שם חברה, תרומות, כפל תפקיד ועוד</p>
+  </div>
+
+  <!-- נושא 20: מכירת שליטה -->
+  <div class="section" id="s20">
+    <div class="section-header">
+      <div class="section-num">20</div>
+      <h2>מכירת שליטה – חובת הגינות ובירור
+        <span class="importance high"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <h3>הלכת קוסוי – עקרונות</h3>
+    <ul class="num-list">
+      <li>בעל שליטה יכול למכור שליטה בפרמיה (כלל)</li>
+      <li>חובת בירור בסיסי (<em>Due Diligence</em>) – לוודא שהקונה לגיטימי</li>
+      <li>אם הייתה ידיעה / עצימת עיניים על כוונות רעות – חובת הגינות מופרת</li>
+    </ul>
+
+    <h3>שלוש גישות לפרמיית שליטה</h3>
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>גישה</th><th>עמדה</th></tr></thead>
+      <tbody>
+        <tr><td>ליברלית</td><td>פרמיה מותרת לחלוטין – שליטה כרכוש אישי</td></tr>
+        <tr><td>שוויונית</td><td>פרמיה שייכת לכלל בעלי המניות</td></tr>
+        <tr><td>ישראלית (קוסוי)</td><td>פרמיה מותרת + חובת בירור בסיסי = איזון</td></tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h3>הלכת פויכטונגר – "דגלים אדומים"</h3>
+    <p>אם עלו <mark class="orange">דגלים אדומים</mark> (חדלות פירעון, כוונות פגיעה) – חובת הבירור מתגברת. מכירה ב"עצימת עיניים" = הפרת חובת הגינות.</p>
+  </div>
+
+  <!-- נושא 21: הוראות שונות -->
+  <div class="section" id="s21">
+    <div class="section-header">
+      <div class="section-num gray">21</div>
+      <h2>הוראות שונות – סעיפים נבחרים
+        <span class="importance med"><span></span><span></span><span></span></span>
+      </h2>
+    </div>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead><tr><th>נושא</th><th>סעיף</th><th>עיקרון</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>שם החברה</strong></td>
+          <td>ס׳ 27</td>
+          <td>חובה לכלול "בע"מ". שם לא יהיה מטעה או פוגעני. הפרה = אחריות אישית לנושאי משרה.</td>
+        </tr>
+        <tr>
+          <td><strong>מינוי רואה חשבון</strong></td>
+          <td>ס׳ 58</td>
+          <td>סמכות בלעדית של האסיפה הכללית. לא ניתן להאציל לדירקטוריון. שכרו נקבע ע"י הדירקטוריון.</td>
+        </tr>
+        <tr>
+          <td><strong>תרומות</strong></td>
+          <td>ס׳ 11</td>
+          <td>חברה רשאית לתרום לצרכי ציבור. הגבלה: עד גבול שנקבע בתקנון / בהחלטת אסיפה כללית.</td>
+        </tr>
+        <tr>
+          <td><strong>הגבלת העברת מניות</strong></td>
+          <td>ס׳ 294</td>
+          <td>בחברה פרטית – חובה להגביל העברת מניות. סוגים: זכות סירוב ראשונה, אישור דירקטוריון, מגבלת בעלות.</td>
+        </tr>
+        <tr>
+          <td><strong>כפל תפקיד (יו"ר + מנכ"ל)</strong></td>
+          <td>ס׳ 95(ג)</td>
+          <td>חברה ציבורית: איסור מוחלט. חברה פרטית: מותר. עיקרון: הפרדת שליטה וניהול.</td>
+        </tr>
+        <tr>
+          <td><strong>זכות עיון בדוחות</strong></td>
+          <td>ס׳ 184-185</td>
+          <td>בעלי מניות זכאים לעיין בדוחות. חברה ציבורית: חובת פרסום דרך מגנא. חובת דיווח מיידי על אירועים מהותיים.</td>
+        </tr>
+        <tr>
+          <td><strong>סמכויות אסיפה כללית</strong></td>
+          <td>ס׳ 57-59</td>
+          <td>מינוי דירקטורים, מינוי רו"ח, שינוי תקנון, אישור עסקאות מיוחדות, מיזוג.</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════ נספחים ═══════════════ -->
+  <div class="part-header">
+    <h2>נספחים — כלי עזר לבחינה</h2>
+    <p>פורמולות, פסיקה, טיפים</p>
+  </div>
+
+  <!-- פורמולות -->
+  <div class="section" id="formulas">
+    <div class="section-header">
+      <div class="section-num purple">★</div>
+      <h2>פורמולות מרכזיות לשינון</h2>
+    </div>
+
+    <div class="formula-box">
+      <div><span>חובת אמונים ← ריפוי:</span>  גילוי מלא  +  אישור כדין  +  הוגנות  =  חובה מרופאת (ס׳ 255)</div>
+      <div><span>BJR:</span>  מיודע  +  ניקיון כפיים  +  תום לב  =  הגנה מפני ביקורת</div>
+      <div><span>קיפוח מיעוט:</span>  דפוס מתמשך  +  ציפיות לגיטימיות  +  מבחן אובייקטיבי  =  עילה (ס׳ 191)</div>
+      <div><span>מכירת שליטה:</span>  זיהוי קונה  +  בירור בסיסי  +  ללא דגלים אדומים  =  מותר</div>
+      <div><span>פטור/שיפוי/ביטוח:</span>  ס׳ 263 → קווים אדומים → כוונה + פזיזות + טובת הנאה = אין כיסוי</div>
+      <div><span>תביעה נגזרת:</span>  פנייה מוקדמת  +  45 יום  +  אישור ביהמ"ש  =  תביעה בשם החברה</div>
+      <div><span>אישור עסקת בעל שליטה:</span>  ועדת ביקורת  +  דירקטוריון  +  רוב מיעוט (ס׳ 275)  =  אישור כשר</div>
+      <div><span>מינוי דח"צ:</span>  רוב מקרב המיעוט  +  לא יותר מ-2% מתנגדים  =  מינוי תקף (ס׳ 239)</div>
+      <div><span>כשירות דירקטור:</span>  זמן  +  כישורים  =  ס׳ 224א (שני תנאים מצטברים)</div>
+    </div>
+  </div>
+
+  <!-- טבלת פסיקה -->
+  <div class="section" id="case-table">
+    <div class="section-header">
+      <div class="section-num teal">⚖</div>
+      <h2>טבלת פסיקה מרכזית</h2>
+    </div>
+
+    <div class="tbl-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>פסק הדין</th>
+          <th>נושא</th>
+          <th>הלכה עיקרית</th>
+          <th>חשיבות לבחינה</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Salomon v. Salomon</strong></td>
+          <td>אישיות נפרדת</td>
+          <td>עיגון עקרון האישיות הנפרדת; מסך הקורפורציה מוגן</td>
+          <td><span class="tag red">גבוהה מאוד</span></td>
+        </tr>
+        <tr>
+          <td><strong>קוסוי</strong></td>
+          <td>מכירת שליטה</td>
+          <td>חובת בירור בסיסי לפני מכירת שליטה; פרמיה מותרת עם אחריות</td>
+          <td><span class="tag red">גבוהה מאוד</span></td>
+        </tr>
+        <tr>
+          <td><strong>פויכטונגר</strong></td>
+          <td>דגלים אדומים</td>
+          <td>חובת הבירור מתגברת כאשר עולים דגלים אדומים; עצימת עיניים = הפרה</td>
+          <td><span class="tag red">גבוהה מאוד</span></td>
+        </tr>
+        <tr>
+          <td><strong>ורדניקוב</strong></td>
+          <td>BJR</td>
+          <td>שלושת תנאי BJR (מיודע, נקי, תום לב); כשל → הגינות מלאה</td>
+          <td><span class="tag red">גבוהה מאוד</span></td>
+        </tr>
+        <tr>
+          <td><strong>בטר פלייס</strong></td>
+          <td>BJR בחדלות</td>
+          <td>דירקטוריון שמחליט להמשיך השקעה בחברה שקורסת – תחת BJR אם פעל בתהליך תקין</td>
+          <td><span class="tag orange">גבוהה</span></td>
+        </tr>
+        <tr>
+          <td><strong>מעריב</strong></td>
+          <td>חובת זהירות</td>
+          <td>דירקטור חייב להיות פעיל; השתתפות, שאלות, מעקב</td>
+          <td><span class="tag orange">גבוהה</span></td>
+        </tr>
+        <tr>
+          <td><strong>פלד-גבעוני</strong></td>
+          <td>כשירות דירקטורים</td>
+          <td>מינוי דח"צ על בסיס קשרים ללא כישורים = עבירה פלילית אפשרית</td>
+          <td><span class="tag orange">גבוהה</span></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- טיפים לבחינה -->
+  <div class="section" id="exam-tips">
+    <div class="section-header">
+      <div class="section-num green">✓</div>
+      <h2>טיפים לבחינה</h2>
+    </div>
+
+    <h3>עשה:</h3>
+    <ul class="checklist">
+      <li><strong>תמיד ציין סעיפים ספציפיים</strong> – ס׳ 254, ס׳ 191, ס׳ 194 וכד׳</li>
+      <li><strong>הבחן בין חובות</strong> – אמונים vs. זהירות vs. הגינות</li>
+      <li><strong>ציין נטל הוכחה</strong> – מי מוכיח מה?</li>
+      <li><strong>השתמש ב-IRAC</strong> – עניין, כלל, ניתוח, מסקנה</li>
+      <li><strong>ציין מדיניות</strong> – למה החוק מגן? מי בסיכון?</li>
+      <li><strong>בדוק "ריפוי"</strong> – בשאלת ניגוד עניינים: האם גולה? האם אושר? האם הוגן?</li>
+    </ul>
+
+    <h3>אל תעשה:</h3>
+    <ul class="checklist">
+      <li class="no"><strong>אל תניח הרמת מסך</strong> – זו חריגה! הנטל גבוה</li>
+      <li class="no"><strong>אל תבלבל BJR עם Entire Fairness</strong> – שני עולמות שונים</li>
+      <li class="no"><strong>אל תשכח שס׳ 258 קוגנטי</strong> – לא ניתן לפטור מחובת אמונים מראש</li>
+      <li class="no"><strong>אל תגיד "הרוב תמיד יכול"</strong> – כפוף לחובת הגינות</li>
+      <li class="no"><strong>אל תשכח Due Diligence במכירת שליטה</strong> – חובה אקטיבית</li>
+      <li class="warn"><strong>שים לב למסלול האישורים</strong> – עסקת בעל שליטה: 3 שלבים, לא 2</li>
+      <li class="warn"><strong>שים לב לתביעה נגזרת</strong> – דרישת פנייה מוקדמת + אישור ביהמ"ש</li>
+    </ul>
+
+    <h3>נושאים שחוזרים בשני המועדים שנותחו</h3>
+    <div class="callout red">
+      <div class="callout-icon">🎯</div>
+      <div class="callout-body">
+        <strong>חובה לדעת:</strong>
+        תביעה נגזרת (ס׳ 194) • BJR (ורדניקוב, בטר פלייס) • חובת אמונים (ס׳ 254) • עסקאות בעלי עניין (ס׳ 270, 275, 278) • קיפוח מיעוט (ס׳ 191) • הרמת מסך (ס׳ 6-7) • מכירת שליטה (קוסוי, פויכטונגר) • הרכב ועדת ביקורת (ס׳ 115-116) • מינוי דח"צ (ס׳ 239)
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="text-align:center; padding:32px 0 48px; color:var(--gray4); font-size:13px;">
+    <p>מסמך זה מבוסס על חומרי הקורס בדיני חברות, חוק החברות תשנ״ט-1999, ופסיקת בתי המשפט בישראל.</p>
+    <p style="margin-top:4px;">עודכן: יוני 2026</p>
+  </div>
+
+</main>
+
+<script>
+  // Sidebar active link on scroll
+  const sections = document.querySelectorAll('[id]');
+  const links = document.querySelectorAll('.sidebar-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => {
+          l.classList.toggle('active', l.getAttribute('href') === '#' + id);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
